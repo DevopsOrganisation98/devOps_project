@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 public class IControllerEmployeImpl  {
-	int b;
+	int f;
 	@Autowired
 	IEmployeService iemployeservice;
 	@Autowired
