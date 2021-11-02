@@ -21,9 +21,6 @@ public class IControllerEntrepriseImpl{
 		ientrepriseservice.ajouterEntreprise(ssiiConsulting);
 		return ssiiConsulting.getId();
 	}
-	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
-		ientrepriseservice.affecterDepartementAEntreprise(depId, entrepriseId);
-	}
 	public void deleteEntrepriseById(int entrepriseId)
 	{
 		ientrepriseservice.deleteEntrepriseById(entrepriseId);
