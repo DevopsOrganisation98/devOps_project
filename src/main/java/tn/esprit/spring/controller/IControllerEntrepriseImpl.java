@@ -15,14 +15,11 @@ public class IControllerEntrepriseImpl{
 
 	@Autowired
 	IEntrepriseService ientrepriseservice;
-
+    int ydpey;
 
 	public int ajouterEntreprise(Entreprise ssiiConsulting) {
 		ientrepriseservice.ajouterEntreprise(ssiiConsulting);
 		return ssiiConsulting.getId();
-	}
-	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
-		ientrepriseservice.affecterDepartementAEntreprise(depId, entrepriseId);
 	}
 	public void deleteEntrepriseById(int entrepriseId)
 	{
