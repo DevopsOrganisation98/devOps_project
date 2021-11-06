@@ -68,6 +68,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		logger.debug("debut de recuperation des departements:");
 		
 		Optional<Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
+
 		if(entrepriseManagedEntity.isPresent()) {
 		logger.info("out of getAllDepartementsNamesByEntreprise()");
 		List<String> depNames = new ArrayList<>();
@@ -77,7 +78,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		logger.debug("les departements sont recuperer avec succées : ");
 		return depNames;
 		}
-		return null;
+		return new ArrayList<>();
 		
 	}
 
