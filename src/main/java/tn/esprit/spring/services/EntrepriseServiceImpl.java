@@ -29,7 +29,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 			logger.debug("debut d'ajout de l'entreprise: " + entreprise.getName());
 			entrepriseRepoistory.save(entreprise);
 			logger.info("out of ajouterEntreprise()");
-			logger.debug("l'entreprise: " + entreprise.getName() + " de l'id: " + entreprise.getId() + " ajoutée avec succé");
+			logger.debug("l'entreprise: " + entreprise.getName()  + entreprise.getId() + " ajoutée avec succé");
 
 		}catch(Exception e){
 			logger.error("Erreur: "+e);
@@ -42,16 +42,12 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		logger.debug("debut d'ajout de l'entreprise: " + dep.getName());
 		deptRepoistory.save(dep);
 		logger.info("out of ajouterDepartement()");
-		logger.debug("le departement : " + dep.getName() + " de l'id: " + dep.getId() + " ajoutée avec succé");
+		logger.debug("le departement : " + dep.getName() + dep.getId() + " ajoutée avec succé");
 		return dep.getId();
 	}
 	
 	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
-		//Le bout Master de cette relation N:1 est departement  
-				//donc il faut rajouter l'entreprise a departement 
-				// ==> c'est l'objet departement(le master) qui va mettre a jour l'association
-				//Rappel : la classe qui contient mappedBy represente le bout Slave
-				//Rappel : Dans une relation oneToMany le mappedBy doit etre du cote one.
+
 				logger.info("In affecterDepartementAEntreprise():");
 				logger.debug("debut de l'affectation:");
 				Optional<Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
@@ -60,7 +56,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 				if(entrepriseManagedEntity.isPresent() && depManagedEntity.isPresent() ) {
 					depManagedEntity.get().setEntreprise(entrepriseManagedEntity.get());
 					deptRepoistory.save(depManagedEntity.get());
-					logger.debug("le departement : " + depManagedEntity.get().getName() + " de l'id: " + depId + " affectée avec succée");
+					logger.debug("le departement : " + depManagedEntity.get().getName()  + depId + " affectée avec succée");
 				}
 				
 				
