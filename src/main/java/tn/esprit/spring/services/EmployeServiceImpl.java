@@ -203,38 +203,65 @@ public class EmployeServiceImpl implements IEmployeService {
 	//fares
 	public void deleteEmployeById(int employeId)
 	{
-		Employe employe = employeRepository.findById(employeId).get();
+		Optional<Employe> employe = employeRepository.findById(employeId);
+		
+		
 
-		//Desaffecter l'employe de tous les departements
-		//c'est le bout master qui permet de mettre a jour
-		//la table d'association
-		for(Departement dep : employe.getDepartements()){
-			dep.getEmployes().remove(employe);
+		
+		if(employe.isPresent()) {
+			logger.info("In deleteEmployeById():");
+			logger.debug("debut d'effacement de l'employe: " +  employe.get().getNom());
+			for(Departement dep : employe.get().getDepartements()){
+				dep.getEmployes().remove(employe.get());
+			}
+
+			employeRepository.delete(employe.get());
+			logger.debug("l'employe: " + employe.get().getNom() + " de l'id: " + employe.get().getId() + " effacé avec succé");
+
 		}
-
-		employeRepository.delete(employe);
+		logger.info("out of deleteEmployeById()");
 	}
 
+	
 	public void deleteContratById(int contratId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		contratRepoistory.delete(contratManagedEntity);
+		
+		Optional<Contrat> contratManagedEntity = contratRepoistory.findById(contratId);
+		
+		
+		
+		if(contratManagedEntity.isPresent()) {
+			logger.info("In deleteContratById():");
+			logger.debug("debut d'effacement du contrat: " +  contratManagedEntity.get().getReference());
+			contratRepoistory.delete(contratManagedEntity.get());
+			logger.debug("le contrat: " + contratManagedEntity.get().getReference() + " effacé avec succé");
+
+		}
+		
+		logger.info("out of deleteContratById()");
 
 	}
 
 	public int getNombreEmployeJPQL() {
+		logger.info("In getNombreEmployeJPQL():");
 		return employeRepository.countemp();
+		
 	}
-
+	
 	public List<String> getAllEmployeNamesJPQL() {
+		logger.info("In getAllEmployeNamesJPQL():");
 		return employeRepository.employeNames();
 
 	}
-
+	
 	public List<Employe> getAllEmployeByEntreprise(Entreprise entreprise) {
+		logger.info("In getAllEmployeByEntreprise():");
+		logger.debug("l'entreprise: " + entreprise.getName());
 		return employeRepository.getAllEmployeByEntreprisec(entreprise);
 	}
 
 	public void mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {
+		logger.info("In mettreAjourEmailByEmployeIdJPQL():");
+		logger.debug("Mettre a jour l'email: " + email + "avec l'employeID"+ employeId);
 		employeRepository.mettreAjourEmailByEmployeIdJPQL(email, employeId);
 
 	}

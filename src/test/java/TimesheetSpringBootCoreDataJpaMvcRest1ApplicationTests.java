@@ -134,6 +134,30 @@ public class TimesheetSpringBootCoreDataJpaMvcRest1ApplicationTests {
     	int entrepriseId=1;
         Assert.assertNotNull(servEntreprise.getEntrepriseById(entrepriseId));
     }
+    
+    @Transactional
+    @Test
+    public void getNombreEmployeJPQL(){
+
+        Assert.assertNotNull(servEmploye.getNombreEmployeJPQL());
+    }
+    
+    @Transactional
+    @Test
+    public void getAllEmployeNamesJPQL(){
+
+        Assert.assertNotNull(servEmploye.getAllEmployeNamesJPQL());
+    }
+    
+    @Transactional
+    @Test
+    public void getAllEmployeByEntreprise(){
+    	
+    	Entreprise ent= new Entreprise("orange","telelcomunication");
+    	servEntreprise.ajouterEntreprise((ent));
+
+        Assert.assertNotNull(servEmploye.getAllEmployeByEntreprise(ent));
+    }
 
 
 }
