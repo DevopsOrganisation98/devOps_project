@@ -24,31 +24,21 @@ public class TimesheetSpringBootCoreDataJpaMvcRest1ApplicationTests {
     @Autowired
     private IEntrepriseService servEntreprise;
 
-    @Autowired
-    private EntrepriseRepository repEnt;
+
     
     @Autowired
     private IEmployeService servEmploye;
-    
-    @Autowired
-    private EntrepriseRepository empEnt;
 
-    @Transactional
-    @Test
-    public void testAjouterEntreprise(){
-        Entreprise ent= new Entreprise("telecom tunis","telelcomunication");
-        int id=servEntreprise.ajouterEntreprise((ent));
 
-        Assert.assertNotNull(repEnt.findById(id).get());
-    }
+   
 
     @Transactional
     @Test
     public void getNombreEmployeJPQL(){
+    	int nmbr=servEmploye.getNombreEmployeJPQL();
+    		Assert.assertNotNull(nmbr);
 
-        if(servEmploye.getNombreEmployeJPQL()!= 0){
-    		Assert.assertNotNull(servEmploye.getNombreEmployeJPQL());
-		}
+        
     }
     
     @Transactional
