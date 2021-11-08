@@ -12,8 +12,10 @@ import tn.esprit.spring.entities.*;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.repository.EntrepriseRepository;
+import tn.esprit.spring.repository.TimesheetRepository;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
+import tn.esprit.spring.services.TimesheetServiceImpl;
 
 import javax.transaction.Transactional;
 
@@ -35,6 +37,13 @@ public class TimesheetSpringBootCoreDataJpaMvcRest1ApplicationTests {
 
     @Autowired
     private DepartementRepository repDep;
+    
+    
+    @Autowired
+    private TimesheetServiceImpl servTimesheet;
+    
+    @Autowired
+    private TimesheetRepository repTime;
 
 
 
@@ -158,6 +167,29 @@ public class TimesheetSpringBootCoreDataJpaMvcRest1ApplicationTests {
     	servEntreprise.ajouterEntreprise((ent));
 
         Assert.assertNotNull(servEmploye.getAllEmployeByEntreprise(ent));
+    }
+    
+    @Transactional
+    @Test
+    public void testAjouterMission(){
+        Mission miss= new Mission("MissionTested2","telelcomunications");
+        Assert.assertNotNull(servTimesheet.ajouterMission((miss)));
+    }
+    
+   
+
+    @Transactional
+    @Test
+    public void testFindMissions(){
+        
+        Assert.assertNotNull(servTimesheet.findAllMissionByEmployeJPQL(1));
+    }
+    
+    @Transactional
+    @Test
+    public void testFindEmployesByMission(){
+        
+        Assert.assertNotNull(servTimesheet.getAllEmployeByMission(1));
     }
 
 

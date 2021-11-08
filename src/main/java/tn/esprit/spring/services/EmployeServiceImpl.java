@@ -36,7 +36,7 @@ public class EmployeServiceImpl implements IEmployeService {
 			logger.debug("debut d'ajout de l'employe: " + employe.getNom());
 			employeRepository.save(employe);
 			logger.info("out of ajouterEmploye()");
-			logger.debug("l'employe: " + employe.getNom() + " de l'id: " + employe.getId() + " ajoutée avec succé");
+			logger.debug("l'employé: " + employe.getNom() + " de l'identifiant: " + employe.getId() + " ajoutée avec succé");
 		}catch(Exception e){
 			logger.error("erreur a ajouterEmploye(): "+e);
 		}
