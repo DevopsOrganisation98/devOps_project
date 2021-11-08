@@ -35,7 +35,10 @@ public class TimesheetSpringBootCoreDataJpaMvcRest1ApplicationTests {
     @Transactional
     @Test
     public void getNombreEmployeJPQL(){
-    	int nmbr=servEmploye.getNombreEmployeJPQL();
+    	Object nmbr = null;
+    		if(servEmploye.getNombreEmployeJPQL()!=0){
+    			nmbr = "existe";
+    		}	
     		Assert.assertNotNull(nmbr);
 
         
